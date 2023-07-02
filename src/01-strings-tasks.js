@@ -19,9 +19,7 @@
  *   '',  'bb'  => 'bb'
  */
 
-const concatenateStrings = function (value1, value2) {
-  return value1.concat(value2);
-};
+const concatenateStrings = (value1, value2) => value1.concat(value2);
 
 
 /**
