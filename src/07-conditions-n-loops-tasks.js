@@ -126,8 +126,46 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const object1 = {
+    top: rect1.top,
+    left: rect1.left,
+    bottom: rect1.top + rect1.height,
+    right: rect1.left + rect1.width,
+  };
+
+  const object2 = {
+    top: rect2.top,
+    left: rect2.left,
+    bottom: rect2.top + rect2.height,
+    right: rect2.left + rect2.width,
+  };
+
+  const isOverlap = (obj1, obj2) => {
+    if (obj2.left >= obj1.left && obj2.left <= obj1.right
+      && obj2.top >= obj1.top && obj2.top <= obj1.bottom) {
+      return true;
+    }
+
+    if (obj2.right >= obj1.left && obj2.right <= obj1.right
+      && obj2.top >= obj1.top && obj2.top <= obj1.bottom) {
+      return true;
+    }
+
+    if (obj2.left >= obj1.left && obj2.left <= obj1.right
+      && obj2.bottom >= obj1.top && obj2.bottom <= obj1.bottom) {
+      return true;
+    }
+
+    if (obj2.right >= obj1.left && obj2.right <= obj1.right
+      && obj2.bottom >= obj1.top && obj2.bottom <= obj1.bottom) {
+      return true;
+    }
+
+    return false;
+  };
+
+  return isOverlap(object1, object2) || isOverlap(object2, object1);
 }
 
 
